@@ -10,6 +10,8 @@ import { APIs_V1 } from '~/routes/v1'
 const START_SERVER = () => {
   const app = express()
 
+  app.use(express.json())
+
   app.get('/', async (req, res) => {
     console.log(await GET_DB().listCollections().toArray())
     res.end('<h1>Hello World!</h1><hr>')
