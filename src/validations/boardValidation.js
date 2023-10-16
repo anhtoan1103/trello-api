@@ -9,15 +9,11 @@ const createNew = async (req, res, next) => {
   })
 
   try {
-    console.log(req.body)
-
     await correctCondition.validateAsync(req.body, { abortEarly: false })
 
-    // next()
-    res.status(StatusCodes.CREATED).json({ message: 'post from validation' })
+    next()
 
   } catch (error) {
-    console.log(error)
     res.status(StatusCodes.UNPROCESSABLE_ENTITY).json({ errors: new Error(error).message })
   }
 }
