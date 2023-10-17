@@ -1,13 +1,14 @@
 import { StatusCodes } from 'http-status-codes'
 import ApiError from '~/utils/ApiError'
+import { boardService } from '~/services/boardService'
 
 const createNew = async (req, res, next) => {
   try {
-    console.log(req.body)
     // route data to service layer
+    const createdBoard = await boardService.createNew(req.body)
     // return result to client
     // throw new ApiError(StatusCodes.BAD_GATEWAY, 'toto beo')
-    res.status(StatusCodes.CREATED).json({ message: 'post from controller' })
+    res.status(StatusCodes.CREATED).json(createdBoard)
   } catch (error) {
     next(error)
   }
