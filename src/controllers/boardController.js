@@ -19,6 +19,7 @@ const getDetails = async (req, res, next) => {
     const boardId = req.params.id
 
     const board = await boardService.getDetails(boardId)
+
     // return result to client
     // throw new ApiError(StatusCodes.BAD_GATEWAY, 'toto beo')
     res.status(StatusCodes.OK).json(board)
